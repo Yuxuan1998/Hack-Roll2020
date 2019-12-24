@@ -19,6 +19,7 @@ useful link: https://uci.nus.edu.sg/oes/focus-areas/waste-management/
 |e-Waste|phone(mobile phone, cell phone), keyboard, computer mouse, earphone, air conditioner, PCB, monitor, TV(television), DVDs, lamps, fans, printer|
 |Ink & Toner Cartridges||
 |Canteen Waste|food waste|
-|Clothes||
+|Clothes|dress, tshirt, pants, shorts|
 |Name Card Boxes||
 |Pens||
+|Human||
