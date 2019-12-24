@@ -13,12 +13,12 @@ useful link: https://uci.nus.edu.sg/oes/focus-areas/waste-management/
 
 |Label|Key words|
 |:--:|:--:|
-|Paper|newspaper, book, notebook, notes|
-|Metals|cans|
+|Paper|newspaper, book, paper notebook, notes, magazines|
+|Metals|cans, pot, frying pan, iron spatula, |
 |Plastics|plastic bottel|
-|e-Waste|phone, keyboard, mouse, earphone|
+|e-Waste|phone(mobile phone, cell phone), keyboard, computer mouse, earphone, air conditioner, PCB, monitor, TV(television), DVDs, lamps, fans, printer|
 |Ink & Toner Cartridges||
-|Canteen Waste||
+|Canteen Waste|food waste|
 |Clothes||
 |Name Card Boxes||
 |Pens||
