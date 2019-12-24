@@ -16,7 +16,7 @@ useful link: https://uci.nus.edu.sg/oes/focus-areas/waste-management/
 |Paper|newspaper, book, notebook, notes|
 |Metals|cans|
 |Plastics|plastic bottel|
-|e-Waste||
+|e-Waste|phone, keyboard, mouse, earphone|
 |Ink & Toner Cartridges||
 |Canteen Waste||
 |Clothes||
