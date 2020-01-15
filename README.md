@@ -16,8 +16,8 @@ useful link: https://uci.nus.edu.sg/oes/focus-areas/waste-management/
 |Paper|paper, cardboard||
 |Metals||
 |Plastics|plastic bottel||
-|e-Waste|phone, keyboard, mouse, earphone||
-|Clothes|dress, tshirt, pants, shorts|PGP|
+|e-Waste|phone, keyboard, mouse, earphone, battery||
+|Clothes|clothes, shorts|PGP|
 |Pens||PGP|
 |Human||
 
