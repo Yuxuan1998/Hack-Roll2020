@@ -9,8 +9,10 @@ from echo import echo
 from start import start
 from unknown import unknown
 from download import image_handler
+from textLocation import location_text_input
+
 # Change your token here
-TOKEN = '860867777:AAH6Hj0-op0CFxc2aa4HpwqmxOwQLfIwVQA'
+TOKEN = '1003258413:AAGZZynNa3S09P1uXRFzKC_TVvHtYrCVFds'
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -31,7 +33,8 @@ def main():
     dp.add_handler(CommandHandler('caps', caps))
     dp.add_handler(CommandHandler('locate', locate))
     dp.add_handler(CommandHandler('bop', bop))
-    dp.add_handler(MessageHandler(Filters.text, echo))
+    # dp.add_handler(MessageHandler(Filters.text, echo))
+    dp.add_handler(MessageHandler(Filters.text, location_text_input))
     dp.add_handler(MessageHandler(Filters.command, unknown))
     dp.add_handler(MessageHandler(Filters.photo, image_handler))
     # Log all errors
