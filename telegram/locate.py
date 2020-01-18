@@ -21,17 +21,3 @@ def request_location(update, context):
     return REQUESTING_LOCATION
 
 
-@send_typing_action
-def get_results_by_location(update, context):
-    # TODO
-    print(update.message.location)
-    update.message.reply_text(
-        "Here are the nearest recycling points.")
-    return ConversationHandler.END
-
-
-@send_typing_action
-def get_all_results(update, context):
-    update.message.reply_text(
-        "All search results are here.")
-    return ConversationHandler.END

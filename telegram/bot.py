@@ -2,14 +2,14 @@
 
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler, PicklePersistence
-from locate import request_location, get_results_by_location, get_all_results, REQUESTING_LOCATION
+from locate import request_location, REQUESTING_LOCATION
+from location_results import get_results_by_location, get_all_results
 from start import start
 from unknown import unknown
 from download import image_handler
-from textLocation import location_text_input
 
 # Change your token here
-TOKEN = '1043648115:AAGd5Sta2ffN06-4fFIpOuS_hJ-Do44MEos'
+TOKEN = '1003258413:AAGZZynNa3S09P1uXRFzKC_TVvHtYrCVFds'
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
