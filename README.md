@@ -13,9 +13,9 @@ useful link: https://uci.nus.edu.sg/oes/focus-areas/waste-management/
 
 |Label|Key words (recyclable)|Unrecyclable|Remark|
 |:--:|:--:|:--:|:--:|
-|Paper|paper, cardboard|||
+|Paper|paper, cardboard|pak||
 |Metals|metal|||
-|Plastics|plastic|contaminated_plastic, pak, wrapper||
+|Plastics|plastic|contaminated_plastic, wrapper||
 |e-Waste|phone, keyboard, mouse, battery|||
 |Clothes|clothes, pants|||
 |Pens|pen|||
