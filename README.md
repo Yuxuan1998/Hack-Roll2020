@@ -11,14 +11,14 @@
 ### Labels
 useful link: https://uci.nus.edu.sg/oes/focus-areas/waste-management/
 
-|Label|Key words|Location|
-|:--:|:--:|:--:|
-|Paper|paper, cardboard||
-|Metals||
-|Plastics|plastic bottel||
-|e-Waste|phone, keyboard, mouse, earphone, battery||
-|Clothes|clothes, shorts|PGP|
-|Pens||PGP|
-|Human||
+|Label|Key words (recyclable)|Unrecyclable|Remark|
+|:--:|:--:|:--:|:--:|
+|Paper|paper, cardboard|||
+|Metals|metal|||
+|Plastics|plastic|contaminated_plastic, pak, wrapper||
+|e-Waste|phone, keyboard, mouse, battery|||
+|Clothes|clothes, pants|||
+|Pens|pen|||
+|Human|human||library|
+|Glass||glass|recyclabel, but nus don't have|
 
-do we need glass???
