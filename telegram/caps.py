@@ -1,5 +1,6 @@
 from chat_action_util import send_typing_action
 
+# TODO
 # /caps arg1 arg2
 @send_typing_action
 def caps(update, context):
