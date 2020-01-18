@@ -2,7 +2,7 @@
 import sys
 import tensorflow as tf
 import numpy as np
-import cv2
+from tensorflow.keras.preprocessing import image
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import model_from_yaml
 
@@ -26,14 +26,13 @@ def img_recog(path):
     IMG_HEIGHT = 150
     IMG_WIDTH = 150
 
-    predict_img = cv2.imread(path)
-    predict_img = cv2.resize(predict_img,(IMG_HEIGHT,IMG_WIDTH))
-    predict_img = np.reshape(predict_img,[1,IMG_HEIGHT,IMG_WIDTH,3])
+    img = image.load_img(path, target_size=(IMG_HEIGHT, IMG_WIDTH))
+    x = image.img_to_array(img)
+    x = np.expand_dims(x, axis=0)/255
 
     # predict
-    prediction = loaded_model.predict(predict_img)
-    prediction_indices = np.argmax(prediction, axis=1)
-    prediction = class_names[prediction_indices[0]]
+    prediction = loaded_model.predict_classes(x)[0]
+    prediction = class_names[prediction]
 
     return prediction
 
