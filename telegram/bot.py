@@ -4,7 +4,7 @@ import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from bop import bop
 from caps import caps
-from locate import locate
+from locate import locate, request_location, get_location
 from echo import echo
 from start import start
 from unknown import unknown
@@ -29,8 +29,9 @@ def main():
 
     dp.add_handler(CommandHandler('start', start))
     dp.add_handler(CommandHandler('caps', caps))
-    dp.add_handler(CommandHandler('locate', locate))
+    dp.add_handler(CommandHandler('locate', request_location))
     dp.add_handler(CommandHandler('bop', bop))
+    dp.add_handler(MessageHandler(Filters.location, get_location))
     dp.add_handler(MessageHandler(Filters.text, echo))
     dp.add_handler(MessageHandler(Filters.command, unknown))
 
