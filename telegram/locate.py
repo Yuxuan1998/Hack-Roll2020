@@ -2,7 +2,7 @@ from chat_action_util import send_typing_action
 from telegram import KeyboardButton, ReplyKeyboardMarkup
 from telegram.ext import ConversationHandler
 
-REQUESTING_LOCATION = range(1)
+REQUESTING_LOCATION = 1
 
 # TODO:
 # Request location
@@ -19,5 +19,3 @@ def request_location(update, context):
     context.bot.send_message(
         chat_id=update.effective_chat.id, text="Would you mind sharing your location with me?", reply_markup=reply_markup)
     return REQUESTING_LOCATION
-
-
