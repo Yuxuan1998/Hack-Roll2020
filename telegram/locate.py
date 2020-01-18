@@ -1,6 +1,7 @@
 from chat_action_util import send_typing_action
 from telegram import KeyboardButton, ReplyKeyboardMarkup
 from telegram.ext import ConversationHandler
+from location_results import ALL_KEYWORDS
 
 REQUESTING_LOCATION = 1
 
@@ -8,6 +9,11 @@ REQUESTING_LOCATION = 1
 # Request location
 @send_typing_action
 def request_location(update, context):
+    if update.message.text not in ALL_KEYWORDS:
+        update.message.reply_text(
+            "Sorry I cannot recognize this item. You try again by uploading a picture")
+        return ConversationHandler.END
+        
     context.user_data['trash'] = update.message.text
 
     button1 = KeyboardButton(
