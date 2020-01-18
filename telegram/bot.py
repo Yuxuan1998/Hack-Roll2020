@@ -9,7 +9,7 @@ from unknown import unknown
 from download import image_handler
 
 # Change your token here
-TOKEN = '1003258413:AAGZZynNa3S09P1uXRFzKC_TVvHtYrCVFds'
+TOKEN = '860867777:AAH6Hj0-op0CFxc2aa4HpwqmxOwQLfIwVQA'
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
