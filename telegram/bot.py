@@ -1,12 +1,16 @@
+#!/usr/bin/env python3
+
 import logging
-import requests
-import re
-from functools import wraps
-from telegram import ChatAction
-from telegram.ext import Updater, InlineQueryHandler, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler, PicklePersistence
+from locate import request_location, REQUESTING_LOCATION
+from location_results import get_results_by_location, get_all_results
+from start import start
+from unknown import unknown
+from download import image_handler
+from file import file_handler
 
 # Change your token here
-TOKEN = '1043648115:AAGd5Sta2ffN06-4fFIpOuS_hJ-Do44MEos'
+TOKEN = '860867777:AAH6Hj0-op0CFxc2aa4HpwqmxOwQLfIwVQA'
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -14,63 +18,11 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 
-def send_action(action):
-    def decorator(func):
-        @wraps(func)
-        def command_func(update, context, *args, **kwargs):
-            context.bot.send_chat_action(
-                chat_id=update.effective_message.chat_id, action=action)
-            return func(update, context,  *args, **kwargs)
-        return command_func
-
-    return decorator
-
-
-send_typing_action = send_action(ChatAction.TYPING)
-send_upload_photo_action = send_action(ChatAction.UPLOAD_PHOTO)
-
-
-# /start
-@send_typing_action
-def start(update, context):
-    update.message.reply_text("Hello, let's start recycling today!")
-
-
-# /caps arg1 arg2
-@send_typing_action
-def caps(update, context):
-    text_caps = ' '.join(context.args).upper()
-    context.bot.send_message(chat_id=update.effective_chat.id, text=text_caps)
-
-
-# Echo any user input
-@send_typing_action
-def echo(update, context):
-    context.bot.send_message(
-        chat_id=update.effective_chat.id, text=update.message.text)
-
-
-# /locate
-# Send location
-@send_typing_action
-def locate(update, context):
-    context.bot.send_location(
-        chat_id=update.effective_chat.id, latitude=1.2966, longitude=103.7764)
-
-
-# /bop
-# Send a random dog picture
-@send_upload_photo_action
-def bop(update, context):
-    url = requests.get('https://random.dog/woof.json').json()['url']
-    context.bot.send_photo(chat_id=update.effective_chat.id,
-                           photo=url)
-
-
-# Any unknown commands
-@send_typing_action
-def unknown(update, context):
-    update.message.reply_text("Sorry, I don't understand this command.")
+# TODO
+def done(update, context):
+    del context.user_data['trash']
+    update.message.reply_text("Aborted!")
+    return ConversationHandler.END
 
 
 # Error logging
@@ -79,14 +31,32 @@ def error(update, context):
 
 
 def main():
-    updater = Updater(TOKEN, use_context=True)
+    pp = PicklePersistence(filename='data')
+    updater = Updater(TOKEN, persistence=pp, use_context=True)
+
+    # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
+    # Add conversation handler with the state REQUESTING_LOCATION
+    conv_handler = ConversationHandler(
+        entry_points=[MessageHandler(Filters.text, request_location),
+                      MessageHandler(Filters.photo, image_handler),
+                      MessageHandler(Filters.document, file_handler)],
+
+        states={
+            REQUESTING_LOCATION: [MessageHandler(Filters.location, get_results_by_location),
+                                  MessageHandler(Filters.regex(
+                                      '^No$'), get_all_results)
+                                  ],
+        },
+
+        fallbacks=[CommandHandler('cancel', done)],
+        name="trash",
+        persistent=True
+    )
+
     dp.add_handler(CommandHandler('start', start))
-    dp.add_handler(CommandHandler('caps', caps))
-    dp.add_handler(CommandHandler('locate', locate))
-    dp.add_handler(CommandHandler('bop', bop))
-    dp.add_handler(MessageHandler(Filters.text, echo))
+    dp.add_handler(conv_handler)
     dp.add_handler(MessageHandler(Filters.command, unknown))
 
     # Log all errors
