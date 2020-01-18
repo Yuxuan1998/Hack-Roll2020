@@ -76,10 +76,7 @@ def get_results_by_location(update, context):
 def choose_shortest_location(target, locations):
     distance = float('inf')
     location_tuple = (target.longitude, target.latitude)
-    print(locations)
     for location in locations:
-        print(location_tuple[0])
-        print(location)
         dist = math.sqrt((location_tuple[0] - location[0]) **
                          2 + (location_tuple[1] - location[1]) ** 2)
         if dist <= distance:
