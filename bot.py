@@ -2,15 +2,16 @@
 
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler, PicklePersistence
-from locate import request_location, REQUESTING_LOCATION
-from location_results import get_results_by_location, get_all_results
 from start import start
 from unknown import unknown
-from download import image_handler
-from file import file_handler
+from image_input import image_handler
+from file_input import file_handler
+from text_input import text_handler
+from request_location import request_location, REQUESTING_LOCATION
+from location_results import get_results_by_location, get_all_results
 
 # Change your token here
-TOKEN = '860867777:AAH6Hj0-op0CFxc2aa4HpwqmxOwQLfIwVQA'
+TOKEN = '1043648115:AAGd5Sta2ffN06-4fFIpOuS_hJ-Do44MEos'
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -39,7 +40,7 @@ def main():
 
     # Add conversation handler with the state REQUESTING_LOCATION
     conv_handler = ConversationHandler(
-        entry_points=[MessageHandler(Filters.text, request_location),
+        entry_points=[MessageHandler(Filters.text, text_handler),
                       MessageHandler(Filters.photo, image_handler),
                       MessageHandler(Filters.document, file_handler)],
 

@@ -1,33 +1,40 @@
 from chat_action_util import send_typing_action
-import math
 from telegram.ext import ConversationHandler
+import math
 
 E_WASTE_KEYWORDS = ["phone", "keyboard", "mouse", "battery", "batteries"]
-E_WASTE_BIZ = (1.292533, 103.774135, "There is a recycle point near NUS Business School")
-E_WASTE_SOC = (1.297001, 103.776981, "There is a recycle point near School of Computing")
+E_WASTE_BIZ = (1.292533, 103.774135,
+               "There is a recycle point near NUS Business School")
+E_WASTE_SOC = (1.297001, 103.776981,
+               "There is a recycle point near School of Computing")
 E_WASTE_NUH = (1.296736, 103.782675, "There is a recycle point near NUH")
 E_WASTE_LOCATION = [E_WASTE_BIZ, E_WASTE_SOC, E_WASTE_NUH]
 
 
 PEN_KEYWORDS = ["pen", "pens"]
-PEN_CLB = (1.296489, 103.772998, "There is a recycle point near Central Library")
+PEN_CLB = (1.296489, 103.772998,
+           "There is a recycle point near Central Library")
 PEN_VENTUS = (1.296129, 103.770279, "There is a recycle point near NUS Ventus")
 PEN_LOCATION = [PEN_CLB, PEN_VENTUS]
 
 CLOTHES_KEYWORDS = ["clothes", "shoes", "bags"]
-CLOTHES_LOCATION = [(1.291175, 103.780761, "There is a recycle point near PGPR")]
+CLOTHES_LOCATION = [
+    (1.291175, 103.780761, "There is a recycle point near PGPR")]
 
 
 HUMAN = (1.297030, 103.773765)
 
-ALL_KEYWORDS =  E_WASTE_KEYWORDS + PEN_KEYWORDS + CLOTHES_KEYWORDS
+ALL_KEYWORDS = E_WASTE_KEYWORDS + PEN_KEYWORDS + CLOTHES_KEYWORDS
 
 ALL_LOCATION = [E_WASTE_BIZ, E_WASTE_SOC, E_WASTE_NUH,
                 PEN_CLB, PEN_VENTUS, CLOTHES_LOCATION]
 
+
 @send_typing_action
 def get_all_results(update, context):
     user_input = context.user_data['trash']
+    update.message.reply_text(
+        "You can recycle " + user_input + " here")
     if user_input in E_WASTE_KEYWORDS:
         for location in E_WASTE_LOCATION:
             update.message.reply_text(location[2])
@@ -52,8 +59,6 @@ def get_all_results(update, context):
 def get_results_by_location(update, context):
     update.message.reply_text(
         "You can recycle " + context.user_data['trash'] + " here")
-    # target = (update.message.location.longitude,
-    #           update.message.location.latitude)
     target = update.message.location
     location_tuple = (0, 0)
 
