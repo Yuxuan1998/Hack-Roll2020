@@ -117,8 +117,8 @@ def get_results_by_location(update, context):
 
         if trash_label in HUMAN_KEYWORDS:
             location_tuple = choose_shortest_location(target, HUMAN_LOCATION)
+            
         update.message.reply_text(location_tuple[2])
-
         context.bot.send_location(
             chat_id=update.effective_chat.id, latitude=location_tuple[0], longitude=location_tuple[1])
 
