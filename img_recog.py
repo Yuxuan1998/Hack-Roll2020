@@ -8,7 +8,7 @@ from tensorflow.keras.models import model_from_yaml
 
 def img_recog(path):
     # label
-    class_names = ['battery', 'cardboard','clothes','contaminated_plastic','glass', 'human', 'keyboard','metal','mouse','pak','pants','paper', 'pen','phone', 'plastic','wrapper']
+    class_names = ['battery','camera_battery', 'cardboard','clothes','contaminated_plastic','glass', 'human', 'keyboard','metal','mouse','pak','pants','paper', 'pen','phone', 'plastic','wrapper']
 
     # load YAML and create model
     yaml_file = open('model.yaml', 'r')
