@@ -12,7 +12,7 @@ from request_location import request_location, REQUESTING_LOCATION, VERIFYING_LA
 from location_results import get_results_by_location, get_all_results
 
 # Change your token here
-TOKEN = '1043648115:AAGd5Sta2ffN06-4fFIpOuS_hJ-Do44MEos'
+TOKEN = '1003258413:AAGZZynNa3S09P1uXRFzKC_TVvHtYrCVFds'
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)

@@ -11,13 +11,13 @@ def img_recog(path):
     class_names = ['battery','camera_battery', 'cardboard','clothes','contaminated_plastic','glass', 'human', 'keyboard','metal','mouse','pak','pants','paper', 'pen','phone', 'plastic','wrapper']
 
     # load YAML and create model
-    yaml_file = open('model.yaml', 'r')
+    yaml_file = open('model_100.yaml', 'r')
     loaded_model_yaml = yaml_file.read()
     yaml_file.close()
     loaded_model = model_from_yaml(loaded_model_yaml)
 
     # load weights into new model
-    loaded_model.load_weights("model.h5")
+    loaded_model.load_weights("model_100.h5")
 
     # compile model
     loaded_model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
