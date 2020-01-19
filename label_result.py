@@ -1,12 +1,12 @@
 from chat_action_util import send_typing_action
-from request_location import REQUESTING_LOCATION
+from request_location import request_location
 from telegram.ext import ConversationHandler
 
 
 @send_typing_action
 def verify_label(update, context):
     context.user_data['trash'] = context.user_data['label']
-    return REQUESTING_LOCATION
+    return request_location(update, context)
 
 
 @send_typing_action
