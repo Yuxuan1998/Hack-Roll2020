@@ -6,8 +6,9 @@ from start import start
 from unknown import unknown
 from image_input import image_handler
 from file_input import file_handler
+from label_result import verify_label, reject_label
 from text_input import text_handler
-from request_location import request_location, REQUESTING_LOCATION
+from request_location import request_location, REQUESTING_LOCATION, VERIFYING_LABEL
 from location_results import get_results_by_location, get_all_results
 
 # Change your token here
@@ -22,6 +23,8 @@ logger = logging.getLogger(__name__)
 # TODO
 def done(update, context):
     del context.user_data['trash']
+    del context.user_data['label']
+
     update.message.reply_text("Aborted!")
     return ConversationHandler.END
 
@@ -45,6 +48,9 @@ def main():
                       MessageHandler(Filters.document, file_handler)],
 
         states={
+            VERIFYING_LABEL: [MessageHandler(Filters.regex('^Yes$'), verify_label),
+                              MessageHandler(Filters.regex('^No$'), reject_label)],
+
             REQUESTING_LOCATION: [MessageHandler(Filters.location, get_results_by_location),
                                   MessageHandler(Filters.regex(
                                       '^No$'), get_all_results)
