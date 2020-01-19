@@ -6,6 +6,8 @@ import math
 
 
 METAL_KEYWORDS = ["metal", "cans"]
+MISSLEADING_KEYWORDS = ["plastic wrapper", "wrapper", "pak"]
+
 
 E_WASTE_KEYWORDS = ["phone", "keyboard", "mouse", "battery", "batteries",
                     "TVs", "computer monitors", "printers", "scanners", "keyboards", 
@@ -36,7 +38,7 @@ PAPER_KEYWORDS = ["notes", "book", "bookes", "paper", "cardboard"]
 
 HUMAN = (1.297030, 103.773765)
 
-ALL_KEYWORDS = E_WASTE_KEYWORDS + PEN_KEYWORDS + CLOTHES_KEYWORDS
+ALL_KEYWORDS = E_WASTE_KEYWORDS + PEN_KEYWORDS + CLOTHES_KEYWORDS + MISSLEADING_KEYWORDS
 
 ALL_LOCATION = [E_WASTE_BIZ, E_WASTE_SOC, E_WASTE_NUH,
                 PEN_CLB, PEN_VENTUS, CLOTHES_LOCATION]
@@ -65,6 +67,10 @@ def get_all_results(update, context):
             update.message.reply_text(location[2])
             context.bot.send_location(
                 chat_id=update.effective_chat.id, latitude=location[0], longitude=location[1])
+
+    if trash_label in MISSLEADING_KEYWORDS:
+    update.message.reply_text(
+        "Though it looks like it can be recyle, " + trash_label + " is actually unrecyclable. You can throw it in any dust bin")
 
     if trash_label not in ALL_KEYWORDS:
         update.message.reply_text(
@@ -95,9 +101,14 @@ def get_results_by_location(update, context):
     context.bot.send_location(
         chat_id=update.effective_chat.id, latitude=location_tuple[0], longitude=location_tuple[1])
 
+    if trash_label in MISSLEADING_KEYWORDS:
+    update.message.reply_text(
+        "Though it looks like it can be recyle, " + trash_label + " is actually unrecyclable. You can throw it in any dust bin")
+
     if trash_label not in ALL_KEYWORDS:
         update.message.reply_text(
             "Looks like" + trash_label + "cannot be recycled in NUS" + "Please email Office of Facilities Management (OFM) at ofmhelp@nus.edu.sg or call the OFM Helpdesk at 6516 1515, to request for additional recycling bins.")
+
 
 
     del context.user_data['trash']
