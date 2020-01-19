@@ -69,8 +69,8 @@ def get_all_results(update, context):
                 chat_id=update.effective_chat.id, latitude=location[0], longitude=location[1])
 
     if trash_label in MISSLEADING_KEYWORDS:
-    update.message.reply_text(
-        "Though it looks like it can be recyle, " + trash_label + " is actually unrecyclable. You can throw it in any dust bin")
+        update.message.reply_text(
+            "Though it looks like it can be recyle, " + trash_label + " is actually unrecyclable. You can throw it in any dust bin")
 
     if trash_label not in ALL_KEYWORDS:
         update.message.reply_text(
@@ -102,8 +102,8 @@ def get_results_by_location(update, context):
         chat_id=update.effective_chat.id, latitude=location_tuple[0], longitude=location_tuple[1])
 
     if trash_label in MISSLEADING_KEYWORDS:
-    update.message.reply_text(
-        "Though it looks like it can be recyle, " + trash_label + " is actually unrecyclable. You can throw it in any dust bin")
+        update.message.reply_text(
+            "Though it looks like it can be recyle, " + trash_label + " is actually unrecyclable. You can throw it in any dust bin")
 
     if trash_label not in ALL_KEYWORDS:
         update.message.reply_text(
