@@ -32,22 +32,23 @@ ALL_LOCATION = [E_WASTE_BIZ, E_WASTE_SOC, E_WASTE_NUH,
 
 @send_typing_action
 def get_all_results(update, context):
-    user_input = context.user_data['trash']
+    trash_label = context.user_data['trash']
     update.message.reply_text(
-        "You can recycle " + user_input + " here")
-    if user_input in E_WASTE_KEYWORDS:
+        "You can recycle " + trash_label + " here")
+
+    if trash_label in E_WASTE_KEYWORDS:
         for location in E_WASTE_LOCATION:
             update.message.reply_text(location[2])
             context.bot.send_location(
                 chat_id=update.effective_chat.id, latitude=location[0], longitude=location[1])
 
-    if user_input in PEN_KEYWORDS:
+    if trash_label in PEN_KEYWORDS:
         for location in PEN_LOCATION:
             update.message.reply_text(location[2])
             context.bot.send_location(
                 chat_id=update.effective_chat.id, latitude=location[0], longitude=location[1])
 
-    if user_input in CLOTHES_KEYWORDS:
+    if trash_label in CLOTHES_KEYWORDS:
         for location in CLOTHES_LOCATION:
             update.message.reply_text(location[2])
             context.bot.send_location(
@@ -57,21 +58,23 @@ def get_all_results(update, context):
 
 
 def get_results_by_location(update, context):
+    trash_label = context.user_data['trash']
     update.message.reply_text(
-        "You can recycle " + context.user_data['trash'] + " here")
-    target = update.message.location
-    location_tuple = (0, 0)
+        "You can recycle " + trash_label + " here")
 
-    if context.user_data['trash'] in E_WASTE_KEYWORDS:
+    target = update.message.location
+
+    if trash_label in E_WASTE_KEYWORDS:
         location_tuple = choose_shortest_location(target, E_WASTE_LOCATION)
 
-    if context.user_data['trash'] in PEN_KEYWORDS:
+    if trash_label in PEN_KEYWORDS:
         location_tuple = choose_shortest_location(target, PEN_LOCATION)
 
-    if context.user_data['trash'] in CLOTHES_KEYWORDS:
+    if trash_label in CLOTHES_KEYWORDS:
         location_tuple = choose_shortest_location(target, CLOTHES_LOCATION)
 
     update.message.reply_text(location_tuple[2])
+
     context.bot.send_location(
         chat_id=update.effective_chat.id, latitude=location_tuple[0], longitude=location_tuple[1])
 
@@ -81,6 +84,7 @@ def get_results_by_location(update, context):
 def choose_shortest_location(target, locations):
     distance = float('inf')
     location_tuple = (target.longitude, target.latitude)
+
     for location in locations:
         dist = math.sqrt((location_tuple[0] - location[0]) **
                          2 + (location_tuple[1] - location[1]) ** 2)
