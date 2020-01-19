@@ -54,6 +54,7 @@ def get_all_results(update, context):
             context.bot.send_location(
                 chat_id=update.effective_chat.id, latitude=location[0], longitude=location[1])
 
+    del context.user_data['trash']
     return ConversationHandler.END
 
 
@@ -78,6 +79,7 @@ def get_results_by_location(update, context):
     context.bot.send_location(
         chat_id=update.effective_chat.id, latitude=location_tuple[0], longitude=location_tuple[1])
 
+    del context.user_data['trash']
     return ConversationHandler.END
 
 

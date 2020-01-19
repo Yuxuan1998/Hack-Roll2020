@@ -1,7 +1,7 @@
 from chat_action_util import send_typing_action
 from telegram import KeyboardButton, ReplyKeyboardMarkup
 
-REQUESTING_LOCATION = 1
+VERIFYING_LABEL, REQUESTING_LOCATION = range(2)
 
 
 # Request location
