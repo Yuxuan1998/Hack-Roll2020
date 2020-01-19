@@ -3,6 +3,8 @@ from telegram.ext import ConversationHandler
 import math
 
 # 'contaminated_plastic','glass', 'human', 'pak','paper',  'plastic','wrapper'
+
+
 METAL_KEYWORDS = ["metal", "cans"]
 
 E_WASTE_KEYWORDS = ["phone", "keyboard", "mouse", "battery", "batteries",
@@ -64,6 +66,10 @@ def get_all_results(update, context):
             context.bot.send_location(
                 chat_id=update.effective_chat.id, latitude=location[0], longitude=location[1])
 
+    if trash_label not in ALL_KEYWORDS:
+        update.message.reply_text(
+            "Looks like" + trash_label + "cannot be recycled in NUS" + "Please email Office of Facilities Management (OFM) at ofmhelp@nus.edu.sg or call the OFM Helpdesk at 6516 1515, to request for additional recycling bins.")
+
     del context.user_data['trash']
     return ConversationHandler.END
 
@@ -88,6 +94,11 @@ def get_results_by_location(update, context):
 
     context.bot.send_location(
         chat_id=update.effective_chat.id, latitude=location_tuple[0], longitude=location_tuple[1])
+
+    if trash_label not in ALL_KEYWORDS:
+        update.message.reply_text(
+            "Looks like" + trash_label + "cannot be recycled in NUS" + "Please email Office of Facilities Management (OFM) at ofmhelp@nus.edu.sg or call the OFM Helpdesk at 6516 1515, to request for additional recycling bins.")
+
 
     del context.user_data['trash']
     return ConversationHandler.END
